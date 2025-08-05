@@ -11,7 +11,7 @@ public class chmove : MonoBehaviour
     {
         // Rigidbody 
         rb = GetComponent<Rigidbody2D>();
-         Debug.Log("Horizontal Input");
+
     }
 
     void Awake()
