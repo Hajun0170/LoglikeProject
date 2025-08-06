@@ -26,15 +26,6 @@ public class chmove : MonoBehaviour
    
         movement = new Vector2(h, v);
 
-        if (movement.magnitude > 1f)
-            movement.Normalize();
-
-   
-        if (movement != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-            rb.rotation = angle; // Rigidbody2D
-        }
    
     }
 

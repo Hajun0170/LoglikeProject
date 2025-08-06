@@ -7,7 +7,7 @@ public enum CardType
 
 public enum WeaponType
 {
-    RangedProjectile,
+    Ranged,
     SpinningBlade,
     Laser,
     ChainLightning,
