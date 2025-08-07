@@ -33,7 +33,6 @@ public class Enemy : Poolable
     public void TakeDamage(int amount)
     {
         currentHP -= amount;
-
         if (currentHP <= 0)
         {
             Die();

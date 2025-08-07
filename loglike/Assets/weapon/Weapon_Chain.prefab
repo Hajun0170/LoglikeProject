@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 189127995756785761}
-  - component: {fileID: 8862756706181128230}
   - component: {fileID: 6050295888091594915}
   m_Layer: 0
   m_Name: Weapon_Chain
@@ -33,23 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8862756706181128230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2686338101479987587}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35a13003ffbe8ff4b8a7f2afb6d03d8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 3
-  projectilePrefab: {fileID: 1981831748549201950, guid: c67a04bfd19a5b74d8afff8418dd1848, type: 3}
-  fireRate: 1
-  projectileSpeed: 10
-  level: 1
 --- !u!114 &6050295888091594915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,5 +47,5 @@ MonoBehaviour:
   pfLightningProjectile: {fileID: 1981831748549201950, guid: c67a04bfd19a5b74d8afff8418dd1848, type: 3}
   fFireRange: 8
   iChainCount: 2
-  iDamage: 10
-  fCooldown: 3
+  iDamage: 4
+  fCooldown: 1.5

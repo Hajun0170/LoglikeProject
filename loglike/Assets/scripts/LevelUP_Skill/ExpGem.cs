@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExpGem : MonoBehaviour
+public class ExpGem : Poolable
 {
     public int expValue = 1;
 
@@ -14,7 +14,7 @@ public class ExpGem : MonoBehaviour
                 player.AddExp(expValue);
             }
 
-            Destroy(gameObject);
+              gameObject.SetActive(false); // ✅ Destroy → SetActive(false)
         }
     }
 }

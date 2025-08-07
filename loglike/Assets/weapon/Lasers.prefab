@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 101843054821260256}
   - component: {fileID: 8313378421271335184}
   - component: {fileID: 2497790446475160373}
+  - component: {fileID: 8772270440716260360}
   m_Layer: 0
   m_Name: Lasers
   m_TagString: Untagged
@@ -116,7 +117,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -145,6 +146,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerSecond: 5
+--- !u!50 &8772270440716260360
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5162622275080938768}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &569185878639754251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157,13 +185,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 1981831748549201950, guid: c897419089521d34089e1e999f515c68, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7901962803454035479, guid: c897419089521d34089e1e999f515c68, type: 3}
       propertyPath: m_LocalScale.x
       value: 73.52941
       objectReference: {fileID: 0}
     - target: {fileID: 7901962803454035479, guid: c897419089521d34089e1e999f515c68, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.44439736
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7901962803454035479, guid: c897419089521d34089e1e999f515c68, type: 3}
       propertyPath: m_LocalScale.z
@@ -213,8 +245,29 @@ PrefabInstance:
     - {fileID: 114377268311793913, guid: c897419089521d34089e1e999f515c68, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1981831748549201950, guid: c897419089521d34089e1e999f515c68, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2752008361558414235}
   m_SourcePrefab: {fileID: 100100000, guid: c897419089521d34089e1e999f515c68, type: 3}
+--- !u!1 &2046541831350545429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1981831748549201950, guid: c897419089521d34089e1e999f515c68, type: 3}
+  m_PrefabInstance: {fileID: 569185878639754251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2752008361558414235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046541831350545429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b362795e706a31946ad6abb9837c7e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePerSecond: 5
 --- !u!4 &7660428111330671132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7901962803454035479, guid: c897419089521d34089e1e999f515c68, type: 3}

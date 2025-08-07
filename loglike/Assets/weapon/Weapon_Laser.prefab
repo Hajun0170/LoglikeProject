@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8461539036881440617}
-  - component: {fileID: 206411012671392075}
   - component: {fileID: -4788279770806685562}
   m_Layer: 0
   m_Name: Weapon_Laser
@@ -33,23 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &206411012671392075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7919157673393533467}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35a13003ffbe8ff4b8a7f2afb6d03d8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 2
-  projectilePrefab: {fileID: 1981831748549201950, guid: c897419089521d34089e1e999f515c68, type: 3}
-  fireRate: 1
-  projectileSpeed: 10
-  level: 1
 --- !u!114 &-4788279770806685562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 5162622275080938768, guid: d233284fb4cca234784ede4f520399e4, type: 3}
-  fireRate: 1
-  laserDuration: 0.5
-  fadeTime: 0.2
+  fireRate: 0.4
+  laserDuration: 0.8
+  fadeTime: 0.3
+  laserWidth: 100
+  damage: 4

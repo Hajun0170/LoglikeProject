@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7023890658942568891}
-  - component: {fileID: 3194502572894505653}
   - component: {fileID: -7165868627108329688}
   m_Layer: 0
   m_Name: Weapon_Spin
@@ -33,23 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3194502572894505653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6550131707778808684}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35a13003ffbe8ff4b8a7f2afb6d03d8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponType: 1
-  projectilePrefab: {fileID: 1981831748549201950, guid: 5efdf2df0ae99e84dbfbc02486089883, type: 3}
-  fireRate: 1
-  projectileSpeed: 10
-  level: 1
 --- !u!114 &-7165868627108329688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfBlade: {fileID: 1981831748549201950, guid: 5efdf2df0ae99e84dbfbc02486089883, type: 3}
   iBladeCount: 1
-  fRadius: 3
-  fRotationSpeed: 180
+  fRadius: 6
+  fRotationSpeed: 300

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems; // 이걸 꼭 추가
 public class LevelUpManager : MonoBehaviour
 {
     public GameObject levelUpPanel;
+    public bool IsCardActive => levelUpPanel.activeSelf;
     public Transform cardContainer;
     public GameObject cardPrefab;
 
@@ -78,7 +79,7 @@ public class LevelUpManager : MonoBehaviour
         foreach (WeaponType w in allTypes)
         {
             if (!weaponManager.HasWeapon(w)) result.Add((CardType.NewWeapon, w));
-            else if (!weaponManager.IsMaxLevel(w)) result.Add((CardType.UpgradeWeapon, w));
+            else result.Add((CardType.UpgradeWeapon, w));
         }
 
 
@@ -104,5 +105,5 @@ IEnumerator DelayedShowInitialCards()
 
 
     
-    
+
 }

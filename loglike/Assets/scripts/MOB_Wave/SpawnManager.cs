@@ -16,40 +16,47 @@ public class SpawnManager : MonoBehaviour
 
     private bool bossAlive = false;
 
+    // 💡 웨이브별 스폰 수량 저장용
+    private int remainMelee = 0;
+    private int remainRanged = 0;
+    private int remainTank = 0;
+
+void Start()
+{
+    Init();  // ✅ 반드시 있어야 함
+}
     public void Init()
     {
         currentWaveIndex = 0;
         StartNextWave();
     }
 
+
     void Update()
     {
         if (!waveActive) return;
 
-        // ✅ index 범위 초과 방지
         if (currentWaveIndex >= waveList.Count)
         {
             waveActive = false;
             return;
         }
 
-        WaveData wave = waveList[currentWaveIndex];
-
-        if (wave.lockUntilBossDead && bossAlive)
+        if (waveList[currentWaveIndex].lockUntilBossDead && bossAlive)
         {
             return;
         }
 
-        if (!wave.lockUntilBossDead && Time.time - waveStartTime > wave.waveDuration)
+        if (!waveList[currentWaveIndex].lockUntilBossDead &&
+            Time.time - waveStartTime > waveList[currentWaveIndex].waveDuration)
         {
-            currentWaveIndex++; // ✅ 인덱스 증가 시점을 여기로 이동해도 무방함
             StartNextWave();
             return;
         }
 
         if (Time.time >= nextSpawnTime)
         {
-            SpawnEnemies(wave);
+            SpawnEnemies();
             nextSpawnTime = Time.time + spawnCooldown;
         }
     }
@@ -69,6 +76,11 @@ public class SpawnManager : MonoBehaviour
         nextSpawnTime = Time.time;
         waveActive = true;
 
+        // 💡 이 시점에 해당 웨이브의 적 수량 저장
+        remainMelee = wave.meleeCount;
+        remainRanged = wave.rangedCount;
+        remainTank = wave.tankCount;
+
         Debug.Log($"📢 웨이브 {currentWaveIndex + 1} 시작!");
 
         if (wave.spawnMidBoss)
@@ -82,26 +94,26 @@ public class SpawnManager : MonoBehaviour
             PoolManager.Instance.Spawn("FinalBoss", player.position + Vector3.right * 12f, Quaternion.identity);
         }
 
-        // ✅ 인덱스 증가를 StartNextWave 끝에서 수행
+        // ✅ 웨이브 인덱스 증가는 여기서!
         currentWaveIndex++;
     }
 
-    void SpawnEnemies(WaveData wave)
+    void SpawnEnemies()
     {
-        if (wave.meleeCount > 0)
+        if (remainMelee > 0)
         {
             PoolManager.Instance.Spawn("MeleeEnemy", GetSpawnPosition(), Quaternion.identity);
-            wave.meleeCount--;
+            remainMelee--;
         }
-        if (wave.rangedCount > 0)
+        if (remainRanged > 0)
         {
             PoolManager.Instance.Spawn("RangedEnemy", GetSpawnPosition(), Quaternion.identity);
-            wave.rangedCount--;
+            remainRanged--;
         }
-        if (wave.tankCount > 0)
+        if (remainTank > 0)
         {
             PoolManager.Instance.Spawn("TankEnemy", GetSpawnPosition(), Quaternion.identity);
-            wave.tankCount--;
+            remainTank--;
         }
     }
 

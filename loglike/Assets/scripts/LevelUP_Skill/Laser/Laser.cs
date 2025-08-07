@@ -58,7 +58,11 @@ public class Laser : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage((int)(damagePerSecond * Time.deltaTime));
+
+
+                enemy.TakeDamage(Mathf.CeilToInt(damagePerSecond * Time.deltaTime));
+                //초당 틱 데미지로 적을 공격하는데, enemy.TakeDamage((int)(damagePerSecond * Time.deltaTime));
+                //이전 저 코드는 소수점을 버림 처리해서 계속 0데미지를 주는 방법, 수정된 코드는 소수점을 올림처림함
             }
         }
     }

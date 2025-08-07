@@ -15,6 +15,7 @@ public class PlayerStats : MonoBehaviour
     public int currentHealth = 5;
     public float invincibleTime = 3f;
     private bool isInvincible = false;
+    private LevelUpManager levelUpManager;
 
     [Header("UI")]
     public HealthUIManager uiManager;
@@ -27,12 +28,16 @@ public class PlayerStats : MonoBehaviour
         UpdateExpUI();
         uiManager.UpdateHearts(currentHealth);
 
-
         // 게임 시작 시 무기 선택 카드 띄우기
         FindObjectOfType<LevelUpManager>().ShowLevelUpChoices(true);
 
         
     }
+
+    void Awake()
+{
+    levelUpManager = FindObjectOfType<LevelUpManager>();
+}
 
     // 경험치 추가
     public void AddExp(int amount)
@@ -55,7 +60,10 @@ public class PlayerStats : MonoBehaviour
         expToNextLevel = Mathf.RoundToInt(expToNextLevel * 1.2f);
         Debug.Log($"🔺 레벨 {level} 달성!");
 
-        FindObjectOfType<LevelUpManager>().ShowLevelUpChoices();
+        if (levelUpManager != null)
+        levelUpManager.ShowLevelUpChoices(false);
+    else
+        Debug.LogError("❌ LevelUpManager가 연결되지 않았습니다!");
     }
 
     void UpdateExpUI()

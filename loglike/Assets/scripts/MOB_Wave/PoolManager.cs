@@ -29,7 +29,10 @@ public class PoolManager : MonoBehaviour
 
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+               GameObject obj = Instantiate(pool.prefab);
+
+                Debug.Log($"👀 Instantiated {pool.key}, activeSelf: {obj.activeSelf}");
+
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -62,11 +65,21 @@ public class PoolManager : MonoBehaviour
 
         GameObject objectToSpawn = queue.Dequeue();
         objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
+       objectToSpawn.transform.position = new Vector3(position.x, position.y, 0f);
+
         objectToSpawn.transform.rotation = rotation;
 
-        objectToSpawn.GetComponent<Poolable>()?.OnReuse();
-
+       // objectToSpawn.GetComponent<Poolable>()?.OnReuse();
+// ✅ Poolable 컴포넌트 null 체크 + 로그
+Poolable poolable = objectToSpawn.GetComponent<Poolable>();
+if (poolable != null)
+{
+    poolable.OnReuse();
+}
+else
+{
+    Debug.LogWarning($"⚠️ Spawn된 오브젝트에 Poolable이 없습니다: {objectToSpawn.name}");
+}
         queue.Enqueue(objectToSpawn);
         return objectToSpawn;
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Linq;
 
-public class ChainLightningWeapon : MonoBehaviour
+public class ChainLightningWeapon : MonoBehaviour, IWeapon
 {
     public GameObject pfLightningProjectile;
     public float fFireRange = 8f;
@@ -10,6 +10,8 @@ public class ChainLightningWeapon : MonoBehaviour
     public float fCooldown = 1.5f;
 
     private float fTimer = 0f;
+
+    public WeaponType GetWeaponType() => WeaponType.ChainLightning;
 
     void Update()
     {
@@ -44,4 +46,11 @@ public class ChainLightningWeapon : MonoBehaviour
         LightningProjectile lightning = goLightning.GetComponent<LightningProjectile>();
         lightning.Initialize(tTarget, iDamage, iRemainingChains, this);
     }
+
+    public void UpgradeWeapon()
+    {
+        iChainCount++; // 업그레이드 시 연쇄 수 증가
+        Debug.Log($"⚡ 체인 라이트닝 강화됨: 연쇄 횟수 {iChainCount}");
+    }
+    
 }

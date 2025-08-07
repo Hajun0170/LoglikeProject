@@ -3,32 +3,58 @@ using System.Collections.Generic;
 
 public class WeaponManager : MonoBehaviour
 {
-    private Dictionary<WeaponType, Weapon> equippedWeapons = new();
+    private Dictionary<WeaponType, IWeapon> equippedWeapons = new();
+
 
     public List<GameObject> weaponPrefabs; // Inspector에 등록
     public Transform weaponHolder;
+public void AddWeapon(WeaponType type)
+{
+    if (equippedWeapons.ContainsKey(type)) return;
 
-    public void AddWeapon(WeaponType type)
+     GameObject prefab = weaponPrefabs.Find(w =>
+        {
+            var provider = w.GetComponent<IWeapon>();
+            return provider != null && provider.GetWeaponType() == type;
+        });
+
+    if (prefab == null)
     {
-        if (equippedWeapons.ContainsKey(type)) return;
-
-        GameObject prefab = weaponPrefabs.Find(w => w.GetComponent<Weapon>().weaponType == type);
-        GameObject obj = Instantiate(prefab, weaponHolder);
-        Weapon weapon = obj.GetComponent<Weapon>();
-        equippedWeapons[type] = weapon;
-
-        Debug.Log($"무기 획득: {type}");
+        Debug.LogError($"❌ {type} 타입의 무기 프리팹을 찾을 수 없습니다.");
+        return;
     }
 
-    public void UpgradeWeapon(WeaponType type)
+    GameObject obj = Instantiate(prefab, weaponHolder);
+
+    IWeapon weaponInstance = obj.GetComponent<IWeapon>();
+    if (weaponInstance == null)
+    {
+        Debug.LogError($"❌ {type} 무기에서 IUpgradableWeapon을 찾을 수 없습니다.");
+        return;
+    }
+
+    equippedWeapons[type] = weaponInstance;
+
+    Debug.Log($"무기 획득: {type}");
+}
+
+ public void UpgradeWeapon(WeaponType type)
     {
         if (equippedWeapons.TryGetValue(type, out var weapon))
         {
-            weapon.Upgrade();
-            Debug.Log($"무기 강화: {type} → Lv.{weapon.level}");
+            var method = weapon.GetType().GetMethod("UpgradeWeapon");
+            if (method != null)
+            {
+                method.Invoke(weapon, null);
+                Debug.Log($"무기 강화: {type}");
+            }
+            else
+            {
+                Debug.LogWarning($"⚠️ {type} 무기에는 UpgradeWeapon() 메서드가 없습니다.");
+            }
         }
     }
 
-    public bool HasWeapon(WeaponType type) => equippedWeapons.ContainsKey(type);
-    public bool IsMaxLevel(WeaponType type) => HasWeapon(type) && equippedWeapons[type].level >= 5;
+  public bool HasWeapon(WeaponType type) => equippedWeapons.ContainsKey(type);
 }
+

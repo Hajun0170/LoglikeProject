@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpinningBladeController : MonoBehaviour
+public class SpinningBladeController : MonoBehaviour, IWeapon
 {
     public GameObject pfBlade;
     public int iBladeCount = 2;
@@ -8,9 +8,29 @@ public class SpinningBladeController : MonoBehaviour
     public float fRotationSpeed = 180f; // degrees per second
 
     private Transform[] aBlades;
-
+    public WeaponType GetWeaponType() => WeaponType.SpinningBlade;
     void Start()
     {
+        SpawnBlades();
+    }
+
+    void Update()
+    {
+        RotateBlades();
+    }
+
+    void SpawnBlades()
+    {
+        // 기존 블레이드 제거
+        if (aBlades != null)
+        {
+            foreach (Transform blade in aBlades)
+            {
+                if (blade != null)
+                    Destroy(blade.gameObject);
+            }
+        }
+
         aBlades = new Transform[iBladeCount];
         float fAngleStep = 360f / iBladeCount;
 
@@ -24,17 +44,21 @@ public class SpinningBladeController : MonoBehaviour
         }
     }
 
-    void Update()
+    void RotateBlades()
     {
         for (int i = 0; i < aBlades.Length; i++)
         {
-            // 회전 각도 계산
             float fAngle = fRotationSpeed * Time.time + (360f / iBladeCount) * i;
             float fRad = fAngle * Mathf.Deg2Rad;
-
-            // 위치 업데이트
             Vector3 vOffset = new Vector3(Mathf.Cos(fRad), Mathf.Sin(fRad), 0) * fRadius;
             aBlades[i].localPosition = vOffset;
         }
+    }
+    
+     public void UpgradeWeapon()
+    {
+        iBladeCount++;
+        SpawnBlades(); // 새로 배치
+        Debug.Log("현재 회전 칼날 수: {iBladeCount}");
     }
 }

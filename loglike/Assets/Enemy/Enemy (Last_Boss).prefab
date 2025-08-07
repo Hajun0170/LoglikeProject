@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3050836, g: 0.4441859, b: 0.78113204, a: 1}
+  m_Color: {r: 0.5018867, g: 0.28000143, b: 0.25283727, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  maxHP: 8
+  maxHP: 500
   expGemPrefab: {fileID: 5229491091782442073, guid: 400c3673dbccab449a3bd15af9e5d898, type: 3}
