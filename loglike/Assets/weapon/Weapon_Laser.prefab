@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 5162622275080938768, guid: d233284fb4cca234784ede4f520399e4, type: 3}
-  fireRate: 0.4
-  laserDuration: 0.8
-  fadeTime: 0.3
-  laserWidth: 100
-  damage: 4
+  fireRate: 0.3
+  laserDuration: 0.1
+  fadeTime: 0.2
+  laserWidth: 50
+  damage: 5

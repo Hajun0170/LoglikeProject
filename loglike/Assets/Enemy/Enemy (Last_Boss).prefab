@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3691797155097242414}
   - component: {fileID: 5031960061077525945}
   - component: {fileID: 3244235460370106418}
-  - component: {fileID: 1711664281912951509}
+  - component: {fileID: 5422352404381333578}
   m_Layer: 6
   m_Name: Enemy (Last_Boss)
   m_TagString: Enemy
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1711664281912951509
+--- !u!114 &5422352404381333578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,9 +158,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7179279615919070064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a2208a693b197c42a0426e9abfe44c7, type: 3}
+  m_Script: {fileID: 11500000, guid: efa29625e7e47d543989602e2f2e9263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  maxHP: 500
+  moveSpeed: 3
+  maxHP: 1000
   expGemPrefab: {fileID: 5229491091782442073, guid: 400c3673dbccab449a3bd15af9e5d898, type: 3}
+  chargeSpeed: 6
+  chargeCooldown: 4
+  shootCooldown: 2.5
+  projectilePrefab: {fileID: 7168296234109805327, guid: dd5171fd678b9c34891304b1726ac8ff, type: 3}
+  projectileSpeed: 10

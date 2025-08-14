@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class Enemy : Poolable
+ public class Enemy : Poolable
 {
     [Header("Stats")]
     public float moveSpeed = 2f;
     public int maxHP = 10;
-    private int currentHP;
+    protected int currentHP;
 
     [Header("References")]
-    private Transform player;
+    protected Transform player;
     public GameObject expGemPrefab;
 
     public override void OnReuse()
@@ -17,12 +17,12 @@ public class Enemy : Poolable
         currentHP = maxHP;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         MoveTowardPlayer();
     }
 
-    void MoveTowardPlayer()
+    protected virtual void MoveTowardPlayer()
     {
         if (player == null) return;
 
@@ -30,7 +30,7 @@ public class Enemy : Poolable
         transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         currentHP -= amount;
         if (currentHP <= 0)
@@ -39,17 +39,17 @@ public class Enemy : Poolable
         }
     }
 
-    void Die()
+    protected virtual void Die()
     {
         if (expGemPrefab != null)
         {
             PoolManager.Instance.Spawn("ExpGem", transform.position, Quaternion.identity);
         }
 
-        gameObject.SetActive(false); // ✅ Destroy 대신 풀 반환
+        gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {

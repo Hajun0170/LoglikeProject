@@ -1,4 +1,3 @@
-// GameManager.cs
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,13 +14,13 @@ public class GameManager : MonoBehaviour
 
     public void OnGameClear()
     {
-        Debug.Log("🎉 게임 클리어!");
+        Debug.Log("게임 클리어!");
         Time.timeScale = 0;
     }
 
     public void OnGameOver()
     {
-        Debug.Log("💀 게임 오버!");
+        Debug.Log("게임 오버!");
         Time.timeScale = 0;
     }
 }

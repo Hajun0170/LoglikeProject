@@ -10,4 +10,5 @@ public class WaveData
     public bool spawnMidBoss = false;
     public bool spawnFinalBoss = false;
     public bool lockUntilBossDead = false;
+    
 }

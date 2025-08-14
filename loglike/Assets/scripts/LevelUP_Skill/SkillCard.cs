@@ -20,7 +20,7 @@ public class SkillCard : MonoBehaviour
     // 카드 텍스트 설정
     if (cardType == CardType.Heal)
     {
-        titleText.text = "체력 회복\nHP를 1 회복합니다.";
+        titleText.text = "체력 회복\nHP를 모두 회복합니다.";
     }
     else if ((cardType == CardType.NewWeapon || cardType == CardType.UpgradeWeapon) && weaponType != WeaponType.None)
     {
@@ -60,7 +60,7 @@ public class SkillCard : MonoBehaviour
     // 버튼 클릭 시 선택
     selectButton.onClick.AddListener(() => manager.SelectCard(cardType, weaponType));
 
-    Debug.Log($"🃏 카드 설정됨: {cardType}, {weaponType}");
+    Debug.Log($"카드 설정됨: {cardType}, {weaponType}");
 }
 
     private static readonly Dictionary<WeaponType, WeaponInfo> weaponInfoDict = new()

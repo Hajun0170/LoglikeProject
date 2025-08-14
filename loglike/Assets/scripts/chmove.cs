@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class chmove : MonoBehaviour
 {
@@ -12,11 +11,6 @@ public class chmove : MonoBehaviour
         // Rigidbody 
         rb = GetComponent<Rigidbody2D>();
 
-    }
-
-    void Awake()
-    {
-        //animator = GetComponent<Animator>();
     }
 
     void Update()

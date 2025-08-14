@@ -58,12 +58,12 @@ public class PlayerStats : MonoBehaviour
     {
         level++;
         expToNextLevel = Mathf.RoundToInt(expToNextLevel * 1.2f);
-        Debug.Log($"🔺 레벨 {level} 달성!");
+        Debug.Log($"레벨 {level} 달성!");
 
         if (levelUpManager != null)
         levelUpManager.ShowLevelUpChoices(false);
     else
-        Debug.LogError("❌ LevelUpManager가 연결되지 않았습니다!");
+        Debug.LogError("LevelUpManager가 연결되지 않았ek!");
     }
 
     void UpdateExpUI()
@@ -79,7 +79,7 @@ public class PlayerStats : MonoBehaviour
     public void RestoreHealth(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        Debug.Log($"❤ 체력 회복됨: {currentHealth}/{maxHealth}");
+        Debug.Log($"체력 회복됨: {currentHealth}/{maxHealth}");
         uiManager.UpdateHearts(currentHealth);
     }
 
@@ -104,8 +104,12 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("☠️ 플레이어 사망!");
-        // GameOver 패널 띄우기 등
+        Debug.Log("악 쥬금ㅠ");
+        PauseManager_DEAD pauseManager = FindObjectOfType<PauseManager_DEAD>();
+    if (pauseManager != null && !pauseManager.IsPaused())
+    {
+        pauseManager.TogglePause();
+    }
     }
 
     IEnumerator InvincibilityCoroutine()

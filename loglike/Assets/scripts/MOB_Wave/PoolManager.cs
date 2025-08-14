@@ -31,7 +31,7 @@ public class PoolManager : MonoBehaviour
             {
                GameObject obj = Instantiate(pool.prefab);
 
-                Debug.Log($"👀 Instantiated {pool.key}, activeSelf: {obj.activeSelf}");
+                Debug.Log($"Instantiated {pool.key}, activeSelf: {obj.activeSelf}");
 
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
@@ -46,7 +46,7 @@ public class PoolManager : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(key))
         {
-            Debug.LogWarning("❌ Pool does not contain key: " + key);
+            Debug.LogWarning("Pool does not contain key: " + key);
             return null;
         }
 
@@ -55,7 +55,7 @@ public class PoolManager : MonoBehaviour
         // ⚠️ 자동 확장 로직
         if (queue.Count == 0)
         {
-            Debug.Log($"🔁 풀 자동 확장: {key}");
+            Debug.Log($"풀 자동 확장: {key}");
 
             GameObject prefab = prefabLookup[key];
             GameObject newObj = Instantiate(prefab);
@@ -70,7 +70,7 @@ public class PoolManager : MonoBehaviour
         objectToSpawn.transform.rotation = rotation;
 
        // objectToSpawn.GetComponent<Poolable>()?.OnReuse();
-// ✅ Poolable 컴포넌트 null 체크 + 로그
+// Poolable 컴포넌트 null 체크 + 로그
 Poolable poolable = objectToSpawn.GetComponent<Poolable>();
 if (poolable != null)
 {
@@ -78,7 +78,7 @@ if (poolable != null)
 }
 else
 {
-    Debug.LogWarning($"⚠️ Spawn된 오브젝트에 Poolable이 없습니다: {objectToSpawn.name}");
+    Debug.LogWarning($"Spawn된 오브젝트에 Poolable이 없습니다: {objectToSpawn.name}");
 }
         queue.Enqueue(objectToSpawn);
         return objectToSpawn;

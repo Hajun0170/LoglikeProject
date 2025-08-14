@@ -14,7 +14,7 @@ public class ExpGem : Poolable
                 player.AddExp(expValue);
             }
 
-              gameObject.SetActive(false); // ✅ Destroy → SetActive(false)
+              gameObject.SetActive(false); // Destroy → SetActive(false)
         }
     }
 }

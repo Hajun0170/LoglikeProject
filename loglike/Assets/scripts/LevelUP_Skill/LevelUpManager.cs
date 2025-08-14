@@ -41,7 +41,7 @@ public class LevelUpManager : MonoBehaviour
     foreach (var (type, wType) in cardOptions)
     {
         GameObject card = Instantiate(cardPrefab, cardContainer);
-        Debug.Log($"✅ 카드 생성됨: {type} / {wType}");
+        Debug.Log($"카드 생성: {type} / {wType}");
         card.GetComponent<SkillCard>().Setup(type, wType, this);
     }
 }
@@ -55,7 +55,7 @@ public class LevelUpManager : MonoBehaviour
             case CardType.UpgradeWeapon:
                 weaponManager.UpgradeWeapon(wType); break;
             case CardType.Heal:
-                playerStats.RestoreHealth(1); break;
+                playerStats.RestoreHealth(5); break;
         }
 
        levelUpPanel.SetActive(false);
@@ -66,7 +66,7 @@ public class LevelUpManager : MonoBehaviour
     {
         List<(CardType, WeaponType)> result = new();
          var allTypes = System.Enum.GetValues(typeof(WeaponType)).Cast<WeaponType>()
-                    .Where(w => w != WeaponType.None); // ✅ None 무기 제거
+                    .Where(w => w != WeaponType.None); // None 무기 제거
 
        if (isInitial)
     {
@@ -92,14 +92,14 @@ public class LevelUpManager : MonoBehaviour
 
 IEnumerator DelayedShowInitialCards()
 {
-    yield return new WaitForSecondsRealtime(0.2f);  // ⚠ 반드시 WaitForSecondsRealtime 사용
+    yield return new WaitForSecondsRealtime(0.2f);  // WaitForSecondsRealtime 중요
     ShowCards(isInitial: true);
 }
 
     public void ShowLevelUpChoices(bool isInitial = false)
     {
-        Debug.Log("📦 스킬카드 UI 호출됨");
-        ShowCards(isInitial); // ✅ 카드 생성 호출 추가
+        Debug.Log("스킬카드 UI 호출됨");
+        ShowCards(isInitial); // 카드 생성 호출 추가
 
     }
 

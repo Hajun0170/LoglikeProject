@@ -20,7 +20,7 @@ public void AddWeapon(WeaponType type)
 
     if (prefab == null)
     {
-        Debug.LogError($"❌ {type} 타입의 무기 프리팹을 찾을 수 없습니다.");
+        Debug.LogError($"{type} 타입의 무기 프리팹을 찾을 수 없습니다.");
         return;
     }
 
@@ -29,7 +29,7 @@ public void AddWeapon(WeaponType type)
     IWeapon weaponInstance = obj.GetComponent<IWeapon>();
     if (weaponInstance == null)
     {
-        Debug.LogError($"❌ {type} 무기에서 IUpgradableWeapon을 찾을 수 없습니다.");
+        Debug.LogError($"{type} 무기에서 IUpgradableWeapon을 찾을 수 없습니다.");
         return;
     }
 
@@ -50,7 +50,7 @@ public void AddWeapon(WeaponType type)
             }
             else
             {
-                Debug.LogWarning($"⚠️ {type} 무기에는 UpgradeWeapon() 메서드가 없습니다.");
+                Debug.LogWarning($" {type} 무기에는 UpgradeWeapon() 메서드가 없습니다.");
             }
         }
     }
